@@ -98,6 +98,9 @@ def test_case_create_company():
     assert company_page.get_input_value_by_placeholder("Input Company Name") == input_company_name_value
     assert company_page.get_selected_card_by_label("Industry Type") == data["industry_type"]
     assert company_page.get_selected_card_by_label("Company Type") == data["company_type"]
-    # Teardown data
-    company_page.teardown_data_company(input_company_name_value)
+    company_id = company_page.get_company_id()
+    print("DEBUG: company_id =", company_id)
+    file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../test_data/company_id.txt'))
+    with open(file_path, "w") as f:
+      f.write(str(company_id))
 
